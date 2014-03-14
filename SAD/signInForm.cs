@@ -17,8 +17,8 @@ namespace SAD
         public signInForm()
         {
             InitializeComponent();
-
         }
+        string goodbye;
 
         string userName;
         string password;
