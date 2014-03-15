@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SAD
 {
-    class Student
+    public class Student
     {
         public int Id { set; get; }
         public string fname { set; get; }
