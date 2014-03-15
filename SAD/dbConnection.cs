@@ -51,6 +51,26 @@ namespace SAD
             }
             return true;
         }
+        public static bool insertStudent(Student s)
+        {
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("INSERT INTO [Student] VALUES ('" + s.Id + "','" + s.fname + "', '" + s.lname + "', '" + s.email + "', '" + s.degree + "', '" + s.entranceYear + "', '" + s.majorId + "', '" + s.supervisor + "')", con);
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                con.Close();
+                return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return true;
+        }
 
 
 
