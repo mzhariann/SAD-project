@@ -18,11 +18,9 @@ namespace SAD
         {
             InitializeComponent();
         }
-        string goodbye;
 
         string userName;
         string password;
-        string hi;
 
         private void userName_Click(object sender, EventArgs e)
         {
