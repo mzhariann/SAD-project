@@ -19,7 +19,7 @@ namespace SAD
         public static bool userPassMatches(string user, string pass) {
             con.Open();
             
-            using (SqlCommand com = new SqlCommand("SELECT userID FROM [User] WHERE userName='"+ user+ "' AND password='" + pass +"'" , con))
+            using (SqlCommand com = new SqlCommand("SELECT Id FROM [User] WHERE userName='"+ user+ "' AND password='" + pass +"'" , con))
             {
                 SqlDataReader reader = com.ExecuteReader();
                 
@@ -32,5 +32,27 @@ namespace SAD
             con.Close();
             return false;
         }
+        public static bool delete(string tableName, int Id){
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("DELETE FROM [" + tableName + "] WHERE Id='" + Id + "'", con);
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                con.Close();
+                return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return true;
+        }
+
+
+
     }
 }

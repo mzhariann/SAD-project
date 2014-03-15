@@ -22,7 +22,7 @@ namespace SAD
 
         string userName;
         string password;
-
+        string hi;
 
         private void userName_Click(object sender, EventArgs e)
         {
@@ -37,7 +37,6 @@ namespace SAD
         private void signIn_Click(object sender, EventArgs e)
         {
             if (dbConnection.userPassMatches(userName , password)) 
-
                 MessageBox.Show(userName + " " + password, " Matched", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             else
                 MessageBox.Show(userName + " " + password, " Not Matched", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

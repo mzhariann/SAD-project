@@ -60,12 +60,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Capacity.cs" />
+    <Compile Include="CapacityArchive.cs" />
     <Compile Include="dbConnection.cs" />
     <Compile Include="dbDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dbDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Evaluator.cs" />
+    <Compile Include="Exam.cs" />
+    <Compile Include="ExtendYear.cs" />
+    <Compile Include="Major.cs" />
+    <Compile Include="Meeting.cs" />
+    <Compile Include="MSDefence.cs" />
+    <Compile Include="PhdExam.cs" />
+    <Compile Include="PhdExamDesigner.cs" />
+    <Compile Include="PhdExamGrader.cs" />
+    <Compile Include="PhDProposal.cs" />
+    <Compile Include="Professor.cs" />
+    <Compile Include="Semester.cs" />
     <Compile Include="signInForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -74,6 +88,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Student.cs" />
+    <Compile Include="User.cs" />
     <EmbeddedResource Include="signInForm.resx">
       <DependentUpon>signInForm.cs</DependentUpon>
     </EmbeddedResource>
