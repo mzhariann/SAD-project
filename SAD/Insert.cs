@@ -16,7 +16,7 @@ namespace SAD
         {
             InitializeComponent();
         }
-
+        string test;
         private void addStudent_Click(object sender, EventArgs e)
         {
             TextBox dynamicTB = new TextBox();
