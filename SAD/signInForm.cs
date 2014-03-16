@@ -37,7 +37,6 @@ namespace SAD
             if (dbConnection.userPassMatches(userName, password))
             {
                 Insert it = new Insert();
-                this.Hide();
                 it.Show();
             }
             else
