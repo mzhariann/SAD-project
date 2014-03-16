@@ -71,6 +71,46 @@ namespace SAD
             }
             return true;
         }
+        public static bool insertProfessor(Professor p)
+        {
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("INSERT INTO [Professor] VALUES ('" + p.Id + "','" + p.email + "', '" + p.fName + "', '" + p.lName + "', '" +p.deptManager +"')", con);
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                con.Close();
+                return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return true;
+        }
+        public static bool insertEvaluator(Evaluator e)
+        {
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("INSERT INTO [Evaluator] VALUES ('" + e.Id + "','" + e.email + "', '" + e.fName + "', '" + e.lName + "')", con);
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return true;
+        }
 
 
 
