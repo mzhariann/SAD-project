@@ -71,6 +71,41 @@ namespace SAD
             }
             return true;
         }
+        public static string[] getTableColumns(string tableName) {
+            con.Open();
+
+            using (SqlCommand com = new SqlCommand( "SELECT c.name 'Column Name' FROM sys.columns c WHERE c.object_id = OBJECT_ID('" + tableName +"')", con) )
+            {
+                SqlDataReader reader = com.ExecuteReader();
+                
+                if (reader.Read())
+                {
+                    string[] columns = new string[reader.FieldCount];
+                    reader.GetValues(columns);
+                    con.Close();  
+                    return columns;
+                }
+            }
+            con.Close();
+            return null;
+        }
+        public static string getField(string table, int id, string col) {
+            con.Open();
+
+            using (SqlCommand com = new SqlCommand("SELECT '" + col + "' FROM '" + table +"' WHERE Id='" + id + "'", con))
+            {
+                SqlDataReader reader = com.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    string res = (string) reader.GetValue(0);
+                    con.Close();
+                    return res;
+                }
+            }
+            con.Close();
+            return null;
+        }
         public static bool insertProfessor(Professor p)
         {
             try
@@ -111,8 +146,6 @@ namespace SAD
             }
             return true;
         }
-
-
 
     }
 }
