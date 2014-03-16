@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SAD
 {
-    class Evaluator
+    public class Evaluator
     {
         public int Id { set; get; }
         public string email { set; get; }
