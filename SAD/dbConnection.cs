@@ -107,24 +107,23 @@ namespace SAD
             return null;
         }
 
-        public static string[] getColumnByName(string tableName, string colName)
+        public static List<string> getColumnByName(string tableName, string colName)
         {
             con.Open();
-
+            List<string> cols = new List<string>();
             using (SqlCommand com = new SqlCommand("SELECT "+colName +" FROM ["+ tableName+"]", con))
             {
                 SqlDataReader reader = com.ExecuteReader();
 
-                if (reader.Read())
+                while (reader.Read())
                 {
-                    string[] columns = new string[reader.FieldCount];
-                    reader.GetValues(columns);
-                    con.Close();
-                    return columns;
+                    string col;
+                    col = reader.GetValue(0).ToString();
+                    cols.Add(col);
                 }
             }
             con.Close();
-            return null;
+            return cols;
         }
 
         public static bool insertProfessor(Professor p)
@@ -168,5 +167,126 @@ namespace SAD
             return true;
         }
 
+        public static List<Professor> getAllProfessors() {
+            con.Open();
+
+            using (SqlCommand com = new SqlCommand("SELECT * FROM [Professor]", con))
+            {
+                SqlDataReader reader = com.ExecuteReader();
+                List<Professor> profs = new List<Professor>();
+                while (reader.Read())
+                {
+                    Professor p = new Professor();
+                    p.Id = reader["Id"].ToString();
+                    p.fName = reader["fName"].ToString();
+                    p.lName = reader["lName"].ToString();
+                    p.email = reader["email"].ToString();
+                    p.deptManager = reader["deptManager"].ToString();
+
+                    System.Diagnostics.Debug.WriteLine("P : " + p.Id + " " + p.fName + " " + p.lName + " " + p.email + " " + p.deptManager);
+                    profs.Add(p);
+                }
+                con.Close();
+                return profs;
+            }
+
+        }
+        public static List<Evaluator> getAllEvaluators()
+        {
+            con.Open();
+
+            using (SqlCommand com = new SqlCommand("SELECT * FROM [Evaluator]", con))
+            {
+                SqlDataReader reader = com.ExecuteReader();
+                List<Evaluator> evals = new List<Evaluator>();
+                while (reader.Read())
+                {
+                    Evaluator p = new Evaluator();
+                    p.Id = reader["Id"].ToString();
+                    p.fName = reader["fName"].ToString();
+                    p.lName = reader["lName"].ToString();
+                    p.email = reader["email"].ToString();
+
+                    System.Diagnostics.Debug.WriteLine("P : " + p.Id + " " + p.fName + " " + p.lName + " " + p.email );
+                    evals.Add(p);
+                }
+                con.Close();
+                return evals;
+            }
+
+        }
+        public static List<Evaluator> getNotSubmitedEvaluators()
+        {
+            con.Open();
+
+            using (SqlCommand com = new SqlCommand("SELECT * FROM [Evaluator] WHERE hasSubmited = 0", con))
+            {
+                SqlDataReader reader = com.ExecuteReader();
+                List<Evaluator> evals = new List<Evaluator>();
+                while (reader.Read())
+                {
+                    Evaluator p = new Evaluator();
+                    p.Id = reader["Id"].ToString();
+                    p.fName = reader["fName"].ToString();
+                    p.lName = reader["lName"].ToString();
+                    p.email = reader["email"].ToString();
+
+                    System.Diagnostics.Debug.WriteLine("P : " + p.Id + " " + p.fName + " " + p.lName + " " + p.email);
+                    evals.Add(p);
+                }
+                con.Close();
+                return evals;
+            }
+
+        }
+        public static List<Professor> getAllDeptManagers()
+        {
+            con.Open();
+
+            using (SqlCommand com = new SqlCommand("SELECT * FROM [Professor] WHERE deptManager != NULL", con))
+            {
+                SqlDataReader reader = com.ExecuteReader();
+                List<Professor> profs = new List<Professor>();
+                while (reader.Read())
+                {
+                    Professor p = new Professor();
+                    p.Id = reader["Id"].ToString();
+                    p.fName = reader["fName"].ToString();
+                    p.lName = reader["lName"].ToString();
+                    p.email = reader["email"].ToString();
+                    p.deptManager = reader["deptManager"].ToString();
+
+                    System.Diagnostics.Debug.WriteLine("P : " + p.Id + " " + p.fName + " " + p.lName + " " + p.email + " " + p.deptManager);
+                    profs.Add(p);
+                }
+                con.Close();
+                return profs;
+            }
+            public static List<Professor> getAllSeminarProfessors() {
+            con.Open();
+
+            using (SqlCommand com = new SqlCommand("SELECT * FROM [SeminarCourseProfs] s, [Professor] p WHERE s.Id = p.Id", con))
+            {
+                SqlDataReader reader = com.ExecuteReader();
+                List<Professor> profs = new List<Professor>();
+                while (reader.Read())
+                {
+                    Professor p = new Professor();
+                    p.Id = reader["Id"].ToString();
+                    p.fName = reader["fName"].ToString();
+                    p.lName = reader["lName"].ToString();
+                    p.email = reader["email"].ToString();
+
+
+                    System.Diagnostics.Debug.WriteLine("P : " + p.Id + " " + p.fName + " " + p.lName + " " + p.email + " " + p.deptManager);
+                    profs.Add(p);
+                }
+                con.Close();
+                return profs;
+            }
+
+        }
+
+        }
     }
 }
