@@ -106,6 +106,27 @@ namespace SAD
             con.Close();
             return null;
         }
+
+        public static string[] getColumnByName(string tableName, string colName)
+        {
+            con.Open();
+
+            using (SqlCommand com = new SqlCommand("SELECT "+colName +" FROM ["+ tableName+"]", con))
+            {
+                SqlDataReader reader = com.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    string[] columns = new string[reader.FieldCount];
+                    reader.GetValues(columns);
+                    con.Close();
+                    return columns;
+                }
+            }
+            con.Close();
+            return null;
+        }
+
         public static bool insertProfessor(Professor p)
         {
             try
