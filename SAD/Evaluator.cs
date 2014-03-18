@@ -8,7 +8,7 @@ namespace SAD
 {
     public class Evaluator
     {
-        public int Id { set; get; }
+        public string Id { set; get; }
         public string email { set; get; }
         public string fName { set; get; }
         public string lName { set; get; }
