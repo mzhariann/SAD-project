@@ -24,26 +24,28 @@ namespace SAD
             addTextBox("ایمیل", 0, 75, 100, 80);
             addTextBox("مقطع", 0, 100, 100, 105);
             addTextBox("سال ورود", 0, 125, 100, 130);
+            addTextBox("استاد راهنما", 0, 175, 100, 180);
             addTextBox("رشته", 0, 150, 100, 155);
-            addTextBox("استاد راهنما", 0, 175, 100, 180);    
-            addSaveButton();
-         
+            addSaveButton();         
         }
         private void save_Click(Object sender, System.EventArgs e)
         {
-            if (this.Controls[1].Text.Equals("شماره‌ی دانشجویی"))
-            {
-                Student s = new Student();
-                s.Id = int.Parse(Controls[0].Text);
-                s.fname = Controls[2].Text;
-                s.lname = Controls[4].Text;
-                s.email = Controls[6].Text;
-                s.degree = int.Parse(Controls[8].Text);
-                s.entranceYear = int.Parse(Controls[10].Text);
-                s.majorId = int.Parse(Controls[12].Text);
-               // s.supervisor = Controls[14].Text;
-            }
 
+        }
+        private void addComboBox(string label, int x1, int y1, int x2, int y2, string[] data)
+        {
+            ComboBox cb = new ComboBox();
+            cb.Height = 25;
+            cb.Width = 100;
+            cb.Items.AddRange(data);
+            cb.DropDownStyle = ComboBoxStyle.DropDownList;
+            cb.Location = new Point(x1, y1);
+            Label dynamicL = new Label();
+            dynamicL.Text = label;
+            dynamicL.Location = new Point(x2, y2);
+            Controls.Add(dynamicL);
+            Controls.Add(cb);
+         
         }
         private void addTextBox(string text , int x1, int y1, int x2, int y2)
         {
