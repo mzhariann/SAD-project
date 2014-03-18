@@ -12,9 +12,11 @@ namespace SAD
     public static class dbConnection
     {
         static SqlConnection con;
+        public static List<Task> tasks;
         public static void initializeConnection() {
             string conString = Properties.Settings.Default.dbConnectionString;
-            con = new SqlConnection(conString); 
+            con = new SqlConnection(conString);
+            tasks = new List<Task>();
         }
         public static bool userPassMatches(string user, string pass) {
             con.Open();
