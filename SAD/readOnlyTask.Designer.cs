@@ -83,7 +83,7 @@
             // content
             // 
             this.content.AutoSize = true;
-            this.content.Location = new System.Drawing.Point(425, 101);
+            this.content.Location = new System.Drawing.Point(224, 130);
             this.content.Name = "content";
             this.content.Size = new System.Drawing.Size(35, 13);
             this.content.TabIndex = 5;
