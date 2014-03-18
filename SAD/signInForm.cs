@@ -36,8 +36,8 @@ namespace SAD
         {
             if (dbConnection.userPassMatches(userName, password))
             {
-                Insert it = new Insert();
-                it.Show();
+                Home home = new Home();
+                home.Show();
             }
             else
                 MessageBox.Show(userName + " " + password, " Not Matched", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
