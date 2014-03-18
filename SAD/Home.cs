@@ -64,7 +64,8 @@ namespace SAD
 
         private void new_Task_Click(object sender, EventArgs e)
         {
-
+            Compose compose = new Compose();
+            compose.Show();
         }
     }
 }
