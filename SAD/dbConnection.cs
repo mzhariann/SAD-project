@@ -262,6 +262,7 @@ namespace SAD
                 con.Close();
                 return profs;
             }
+        }
             public static List<Professor> getAllSeminarProfessors() {
             con.Open();
 
