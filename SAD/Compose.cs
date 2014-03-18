@@ -21,10 +21,10 @@ namespace SAD
         {
 
         }
-
+        Task t = new Task();
         private void save_Button_Click(object sender, EventArgs e)
         {
-            Task t = new Task();
+           
             t.date = dateTextBox.Text;
             t.subject = subjectTextBox.Text;
             t.content = editorTextBox.Text;
@@ -34,7 +34,9 @@ namespace SAD
             t.sendingOption = sendingOption.Checked.ToString();
             t.confirmation = confirmation.Checked.ToString();
             MessageBox.Show("نامه‌ی شما با موفقیت ثبت شد");
-
+            dbConnection.tasks.Add(t);
+            this.Close();
+            
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
