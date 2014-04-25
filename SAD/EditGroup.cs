@@ -29,13 +29,17 @@ namespace SAD
             //int rowCountEx = t.Rows.Count;
             
             studentsGridView.DataSource = t;
+            studentsGridView.Columns[1].Visible = false;
             StudentSelect.DataPropertyName = "bool";
 
             DataTable t2 = dbConnection.getProfsInGroup(Gid);
             profGridView.DataSource = t2;
+            profGridView.Columns[1].Visible = false;
             profSelect.DataPropertyName = "bool";
+            
             DataTable t3 = dbConnection.getAllEvalsTable();
             evalGridView.DataSource = t3;
+            evalGridView.Columns[1].Visible = false;
             EvalSelect.DataPropertyName = "bool";
         }
 
