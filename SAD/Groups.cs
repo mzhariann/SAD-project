@@ -33,7 +33,9 @@ namespace SAD
 
         private void edit_group_btn_Click(object sender, EventArgs e)
         {
-
+            int grpid = Convert.ToInt32(groupsDataGridView.Rows[groupsDataGridView.SelectedRows[0].Index].Cells["Id"].Value);
+            EditGroup e2 = new EditGroup(grpid);
+            e2.Show();
         }
 
         private void delete_group_btn_Click(object sender, EventArgs e)

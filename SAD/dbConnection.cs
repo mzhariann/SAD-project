@@ -15,18 +15,20 @@ namespace SAD
     {
         static SqlConnection con;
         public static List<Task> tasks;
-        public static void initializeConnection() {
+        public static void initializeConnection()
+        {
             string conString = Properties.Settings.Default.dbConnectionString;
             con = new SqlConnection(conString);
             tasks = new List<Task>();
         }
-        public static bool userPassMatches(string user, string pass) {
+        public static bool userPassMatches(string user, string pass)
+        {
             con.Open();
-            
-            using (SqlCommand com = new SqlCommand("SELECT Id FROM [User] WHERE userName='"+ user+ "' AND password='" + pass +"'" , con))
+
+            using (SqlCommand com = new SqlCommand("SELECT Id FROM [User] WHERE userName='" + user + "' AND password='" + pass + "'", con))
             {
                 SqlDataReader reader = com.ExecuteReader();
-                
+
                 if (reader.Read())
                 {
                     con.Close();
@@ -36,7 +38,8 @@ namespace SAD
             con.Close();
             return false;
         }
-        public static bool delete(string tableName, int Id){
+        public static bool delete(string tableName, int Id)
+        {
             try
             {
                 con.Open();
@@ -61,9 +64,10 @@ namespace SAD
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO [Student] VALUES ('" + s.fname + "', '" + s.lname + "', '" + s.email + "', '" + s.degree + "', '" + s.entranceYear + "', '" + s.majorId + "', '" + s.supervisor + "')", con);
+                SqlCommand cmd = new SqlCommand("INSERT INTO [Student] VALUES ('" + s.degree + "', '" + s.entranceYear + "', '" + s.majorId + "', '" + s.supervisor + "')", con);
                 cmd.ExecuteNonQuery();
-
+                SqlCommand cmd2 = new SqlCommand("INSERT INTO [Person] VALUES ('" + s.fname + "', '" + s.lname + "', '" + s.email + "')", con);
+                cmd2.ExecuteNonQuery();
             }
             catch (Exception e)
             {
@@ -76,34 +80,36 @@ namespace SAD
             }
             return true;
         }
-        public static string[] getTableColumns(string tableName) {
+        public static string[] getTableColumns(string tableName)
+        {
             con.Open();
 
-            using (SqlCommand com = new SqlCommand( "SELECT c.name 'Column Name' FROM sys.columns c WHERE c.object_id = OBJECT_ID('" + tableName +"')", con) )
+            using (SqlCommand com = new SqlCommand("SELECT c.name 'Column Name' FROM sys.columns c WHERE c.object_id = OBJECT_ID('" + tableName + "')", con))
             {
                 SqlDataReader reader = com.ExecuteReader();
-                
+
                 if (reader.Read())
                 {
                     string[] columns = new string[reader.FieldCount];
                     reader.GetValues(columns);
-                    con.Close();  
+                    con.Close();
                     return columns;
                 }
             }
             con.Close();
             return null;
         }
-        public static string getField(string table, int id, string col) {
+        public static string getField(string table, int id, string col)
+        {
             con.Open();
 
-            using (SqlCommand com = new SqlCommand("SELECT '" + col + "' FROM '" + table +"' WHERE Id='" + id + "'", con))
+            using (SqlCommand com = new SqlCommand("SELECT " + col + " FROM [" + table + "] WHERE Id='" + id + "'", con))
             {
                 SqlDataReader reader = com.ExecuteReader();
 
                 if (reader.Read())
                 {
-                    string res = (string) reader.GetValue(0);
+                    string res = (string)reader.GetValue(0);
                     con.Close();
                     return res;
                 }
@@ -116,7 +122,7 @@ namespace SAD
         {
             con.Open();
             List<string> cols = new List<string>();
-            using (SqlCommand com = new SqlCommand("SELECT "+colName +" FROM ["+ tableName+"]", con))
+            using (SqlCommand com = new SqlCommand("SELECT " + colName + " FROM [" + tableName + "]", con))
             {
                 SqlDataReader reader = com.ExecuteReader();
 
@@ -136,9 +142,10 @@ namespace SAD
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO [Professor] VALUES ('"+ p.email + "', '" + p.fName + "', '" + p.lName + "', '" +p.deptManager +"')", con);
+                SqlCommand cmd = new SqlCommand("INSERT INTO [Professor] VALUES ('" + p.deptManager + "')", con);
                 cmd.ExecuteNonQuery();
-
+                //SqlCommand cmd2 = new SqlCommand("INSERT INTO [Person] VALUES ('" + s.fname + "', '" + s.lname + "', '" + s.email + "')", con);
+                //cmd2.ExecuteNonQuery(); 
             }
             catch (Exception e)
             {
@@ -156,7 +163,7 @@ namespace SAD
             try
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("INSERT INTO [Evaluator] VALUES ('"+ e.email + "', '" + e.fName + "', '" + e.lName + "')", con);
+                SqlCommand cmd = new SqlCommand("INSERT INTO [Evaluator] VALUES ('" + e.email + "', '" + e.fName + "', '" + e.lName + "')", con);
                 cmd.ExecuteNonQuery();
 
             }
@@ -172,7 +179,8 @@ namespace SAD
             return true;
         }
 
-        public static List<Professor> getAllProfessors() {
+        public static List<Professor> getAllProfessors()
+        {
             con.Open();
 
             using (SqlCommand com = new SqlCommand("SELECT * FROM [Professor]", con))
@@ -212,7 +220,7 @@ namespace SAD
                     p.lName = reader["lName"].ToString();
                     p.email = reader["email"].ToString();
 
-                    System.Diagnostics.Debug.WriteLine("P : " + p.Id + " " + p.fName + " " + p.lName + " " + p.email );
+                    System.Diagnostics.Debug.WriteLine("P : " + p.Id + " " + p.fName + " " + p.lName + " " + p.email);
                     evals.Add(p);
                 }
                 con.Close();
@@ -292,133 +300,203 @@ namespace SAD
                 return profs;
             }
         }
-            public static DataTable getGroupsTable() {
-                con.Open();
-                DataTable t = new DataTable();
-                using (SqlDataAdapter a = new SqlDataAdapter(
-		        "SELECT * FROM [Group]", con))
-		        {
-		        // Use DataAdapter to fill DataTable
-		    
-		        a.Fill(t);
-		    
-		        // Render data onto the screen
-		    
-		        }
-                con.Close();
-                return t;
-            }
-
-
-            public static bool addGroupMember(int gId, int mId) {
-                try
-                {
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO [GroupMembers] VALUES ('" + gId + "','" + mId + "')", con);
-                    cmd.ExecuteNonQuery();
-
-                }
-                catch (Exception ex)
-                {
-                    con.Close();
-                    return false;
-                }
-                finally
-                {
-                    con.Close();
-                }
-                return true;
-            }
-
-            public static int addGroup(string name)
+        public static DataTable getGroupsTable()
+        {
+            con.Open();
+            DataTable t = new DataTable();
+            using (SqlDataAdapter a = new SqlDataAdapter(
+            "SELECT * FROM [Group]", con))
             {
-                try
-                {
-                    con.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO [Group] VALUES ('" + name + "') ; " +
-                        "SELECT @@IDENTITY AS Ident" , con);
-                     IDataReader cReader = null;
+                // Use DataAdapter to fill DataTable
 
-                    cmd.ExecuteNonQuery();
-                    if (cReader.Read()) {
-                        return cReader.GetInt32(0);
-                    }
+                a.Fill(t);
 
-                }
-                catch (Exception ex)
-                {
-                    con.Close();
-                    return -1;
-                }
-                finally
-                {
-                    con.Close();
-                }
-                return -1;
+                // Render data onto the screen
+
             }
-            public static DataTable getTable(string name)
-            {
-                con.Open();
-                DataTable t = new DataTable();
-                using (SqlDataAdapter a = new SqlDataAdapter(
-                "SELECT * FROM [" + name + "]", con))
-                {
-                    // Use DataAdapter to fill DataTable
-
-                    a.Fill(t);
-
-                    // Render data onto the screen
-
-                }
-                con.Close();
-                return t;
-            }
-
-            public static DataTable getAllStudentsTable()
-            {
-                con.Open();
-                DataTable t = new DataTable();
-                using (SqlDataAdapter a = new SqlDataAdapter(
-                "SELECT P.Id , P.fName , P.lName , P.email FROM [Student] as S , [Person] as P WHERE S.Id = P.Id ", con))
-                {
-                    // Use DataAdapter to fill DataTable
-                    a.Fill(t);
-                    // Render data onto the screen
-                }
-                con.Close();
-                return t;
-            }
-            public static DataTable getAllProfsTable()
-            {
-                con.Open();
-                DataTable t = new DataTable();
-                using (SqlDataAdapter a = new SqlDataAdapter(
-                "SELECT P.Id , P.fName , P.lName , P.email FROM [Professor] as S , [Person] as P WHERE S.Id = P.Id ", con))
-                {
-                    // Use DataAdapter to fill DataTable
-                    a.Fill(t);
-                    // Render data onto the screen
-                }
-                con.Close();
-                return t;
-            }
-            public static DataTable getAllEvalsTable()
-            {
-                con.Open();
-                DataTable t = new DataTable();
-                using (SqlDataAdapter a = new SqlDataAdapter(
-                "SELECT P.Id , P.fName , P.lName , P.email FROM [Evaluator] as S , [Person] as P WHERE S.Id = P.Id ", con))
-                {
-                    // Use DataAdapter to fill DataTable
-                    a.Fill(t);
-                    // Render data onto the screen
-                }
-                con.Close();
-                return t;
-            }
+            con.Close();
+            return t;
         }
 
 
-        
+        public static bool addGroupMember(int gId, int mId)
+        {
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("INSERT INTO [GroupMembers] VALUES ('" + gId + "','" + mId + "')", con);
+
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return true;
+        }
+
+        public static int addGroup(string name)
+        {
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("INSERT INTO [Group] VALUES ('" + name + "') ; SELECT CAST(scope_identity() AS int)", con);
+                Int32 gid = (Int32)cmd.ExecuteScalar();
+                return gid;
+
+
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                return -1;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return -1;
+        }
+        public static DataTable getTable(string name)
+        {
+            con.Open();
+            DataTable t = new DataTable();
+            using (SqlDataAdapter a = new SqlDataAdapter(
+            "SELECT * FROM [" + name + "]", con))
+            {
+                // Use DataAdapter to fill DataTable
+
+                a.Fill(t);
+
+                // Render data onto the screen
+
+            }
+            con.Close();
+            return t;
+        }
+
+        public static DataTable getAllStudentsTable()
+        {
+            con.Open();
+            DataTable t = new DataTable();
+            using (SqlDataAdapter a = new SqlDataAdapter(
+            "SELECT P.Id , P.fName , P.lName , P.email FROM [Student] as S , [Person] as P WHERE S.Id = P.Id ", con))
+            {
+                // Use DataAdapter to fill DataTable
+                a.Fill(t);
+                // Render data onto the screen
+            }
+            con.Close();
+            return t;
+        }
+        public static DataTable getAllProfsTable()
+        {
+            con.Open();
+            DataTable t = new DataTable();
+            using (SqlDataAdapter a = new SqlDataAdapter(
+            "SELECT P.Id , P.fName , P.lName , P.email FROM [Professor] as S , [Person] as P WHERE S.Id = P.Id ", con))
+            {
+                // Use DataAdapter to fill DataTable
+                a.Fill(t);
+                // Render data onto the screen
+            }
+            con.Close();
+            return t;
+        }
+        public static DataTable getAllEvalsTable()
+        {
+            con.Open();
+            DataTable t = new DataTable();
+            using (SqlDataAdapter a = new SqlDataAdapter(
+            "SELECT P.Id , P.fName , P.lName , P.email FROM [Evaluator] as S , [Person] as P WHERE S.Id = P.Id ", con))
+            {
+                // Use DataAdapter to fill DataTable
+                a.Fill(t);
+                // Render data onto the screen
+            }
+            con.Close();
+            return t;
+        }
+
+        public static DataTable getStudentsInGroup(int id)
+        {
+            con.Open();
+            DataTable t = new DataTable();
+            //using (SqlDataAdapter a = new SqlDataAdapter(
+            //"SELECT Id FROM [Student] as S WHERE Id IN (SELECT MemberId FROM [GroupMembers] WHERE GroupId = '" + id + "') ", con))
+            using (SqlDataAdapter a = new SqlDataAdapter(
+            "SELECT (CASE WHEN S.Id IN (SELECT MemberId FROM [GroupMembers] WHERE GroupId = '" + id + "') THEN 1 ELSE 0 END) AS bool, P.Id , P.fName , P.lName , P.email FROM [Student] as S , [Person] as P WHERE S.Id = P.Id ", con))
+            {
+                // Use DataAdapter to fill DataTable
+                a.Fill(t);
+                // Render data onto the screen
+            }
+            con.Close();
+            return t;
+        }
+
+
+        public static DataTable getProfsInGroup(int id)
+        {
+            con.Open();
+            DataTable t = new DataTable();
+            using (SqlDataAdapter a = new SqlDataAdapter(
+            "SELECT (CASE WHEN S.Id IN (SELECT MemberId FROM [GroupMembers] WHERE GroupId = '" + id + "') THEN 1 ELSE 0 END) AS bool, P.Id , P.fName , P.lName , P.email FROM [Professor] as S , [Person] as P WHERE S.Id = P.Id ", con))
+            {
+                // Use DataAdapter to fill DataTable
+                a.Fill(t);
+                // Render data onto the screen
+            }
+            con.Close();
+            return t;
+        }
+
+
+        public static DataTable getEvalsInGroup(int id)
+        {
+            con.Open();
+            DataTable t = new DataTable();
+            using (SqlDataAdapter a = new SqlDataAdapter(
+            "SELECT (CASE WHEN S.Id IN (SELECT MemberId FROM [GroupMembers] WHERE GroupId = '" + id + "') THEN 1 ELSE 0 END) AS bool, P.Id , P.fName , P.lName , P.email FROM [Evaluator] as S , [Person] as P WHERE S.Id = P.Id ", con))
+            {
+                // Use DataAdapter to fill DataTable
+                a.Fill(t);
+                // Render data onto the screen
+            }
+            con.Close();
+            return t;
+        }
+
+
+        public static bool updateGroup(string name, int id)
+        {
+
+            con.Open();
+            try
+            {
+                SqlCommand com = new SqlCommand("UPDATE [Group] SET Name='" + name + "' Where Id = '" + id + "'", con);
+                com.ExecuteNoxnQuery();
+                con.Close();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                return false;
+            }
+            finally
+            {
+                con.Close();
+             
+            }
+        }
+    }
+    
 }
 

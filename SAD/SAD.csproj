@@ -80,6 +80,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="EditGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditGroup.Designer.cs">
+      <DependentUpon>EditGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Evaluator.cs" />
     <Compile Include="Exam.cs" />
     <Compile Include="ExtendYear.cs" />
@@ -132,6 +138,9 @@
       <DependentUpon>AddGroup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Compose.resx" />
+    <EmbeddedResource Include="EditGroup.resx">
+      <DependentUpon>EditGroup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Groups.resx">
       <DependentUpon>Groups.cs</DependentUpon>
     </EmbeddedResource>
