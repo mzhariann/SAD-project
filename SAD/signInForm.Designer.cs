@@ -45,7 +45,7 @@
             // 
             // signIn
             // 
-            this.signIn.Location = new System.Drawing.Point(112, 153);
+            this.signIn.Location = new System.Drawing.Point(113, 160);
             this.signIn.Name = "signIn";
             this.signIn.Size = new System.Drawing.Size(75, 23);
             this.signIn.TabIndex = 2;
@@ -78,7 +78,7 @@
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.PasswordChar = '*';
             this.passwordTextBox.Size = new System.Drawing.Size(100, 20);
-            this.passwordTextBox.TabIndex = 5;
+            this.passwordTextBox.TabIndex = 1;
             this.passwordTextBox.TextChanged += new System.EventHandler(this.passwordTextBox_TextChanged);
             // 
             // signInForm

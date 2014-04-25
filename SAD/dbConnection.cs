@@ -7,6 +7,8 @@ using System.Data.SqlClient;
 using System.Data.SqlServerCe;
 using System.Windows.Forms;
 
+using System.Data;
+
 namespace SAD
 {
     public static class dbConnection
@@ -40,7 +42,8 @@ namespace SAD
                 con.Open();
                 SqlCommand cmd = new SqlCommand("DELETE FROM [" + tableName + "] WHERE Id='" + Id + "'", con);
                 cmd.ExecuteNonQuery();
-
+                //System.Diagnostics.Debug.WriteLine("DELETE : " +Id );
+                MessageBox.Show("DELETE FUNC : " + Id);
             }
             catch (Exception e)
             {
@@ -265,7 +268,8 @@ namespace SAD
                 return profs;
             }
         }
-            public static List<Professor> getAllSeminarProfessors() {
+        public static List<Professor> getAllSeminarProfessors()
+        {
             con.Open();
 
             using (SqlCommand com = new SqlCommand("SELECT * FROM [SeminarCourseProfs] s, [Professor] p WHERE s.Id = p.Id", con))
@@ -287,9 +291,69 @@ namespace SAD
                 con.Close();
                 return profs;
             }
+        }
+            public static DataTable getGroupsTable() {
+                con.Open();
+                DataTable t = new DataTable();
+                using (SqlDataAdapter a = new SqlDataAdapter(
+		        "SELECT * FROM [Group]", con))
+		        {
+		        // Use DataAdapter to fill DataTable
+		    
+		        a.Fill(t);
+		    
+		        // Render data onto the screen
+		    
+		        }
+                con.Close();
+                return t;
+            }
+
+
+            public static bool addGroupMember(int gId, int mId) {
+                try
+                {
+                    con.Open();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO [GroupMembers] VALUES ('" + gId + "','" + mId + "')", con);
+                    cmd.ExecuteNonQuery();
+
+                }
+                catch (Exception ex)
+                {
+                    con.Close();
+                    return false;
+                }
+                finally
+                {
+                    con.Close();
+                }
+                return true;
+            }
+
+            public static bool addGroup(string name)
+            {
+                try
+                {
+                    con.Open();
+                    //SqlCommand cmd = new SqlCommand("INSERT INTO [Group] VALUES ('" + gId + "','" + mId + "')", con);
+                    //cmd.ExecuteNonQuery();
+
+                }
+                catch (Exception ex)
+                {
+                    con.Close();
+                    return false;
+                }
+                finally
+                {
+                    con.Close();
+                }
+                return true;
+            }
 
         }
 
-        }
-    }
+
+        
+}
 
