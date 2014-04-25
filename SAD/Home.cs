@@ -125,5 +125,11 @@ namespace SAD
             b2.Width = 150;
             splitContainer1.Panel1.Controls.Add(b2);
         }
+
+        private void groups_click(object sender, EventArgs e)
+        {
+            Groups group = new Groups();
+            group.Show();
+        }
     }
 }

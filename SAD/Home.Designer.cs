@@ -37,6 +37,7 @@
             this.savedTasks = new System.Windows.Forms.Button();
             this.new_Task_Button = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.groups_button = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -114,7 +115,7 @@
             // 
             // new_Task_Button
             // 
-            this.new_Task_Button.Location = new System.Drawing.Point(3, 155);
+            this.new_Task_Button.Location = new System.Drawing.Point(3, 156);
             this.new_Task_Button.Name = "new_Task_Button";
             this.new_Task_Button.Size = new System.Drawing.Size(203, 23);
             this.new_Task_Button.TabIndex = 2;
@@ -134,6 +135,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.groups_button);
             this.splitContainer1.Panel2.Controls.Add(this.new_Task_Button);
             this.splitContainer1.Panel2.Controls.Add(this.savedTasks);
             this.splitContainer1.Panel2.Controls.Add(this.logButton);
@@ -145,6 +147,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(912, 514);
             this.splitContainer1.SplitterDistance = 702;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // groups_button
+            // 
+            this.groups_button.Location = new System.Drawing.Point(3, 174);
+            this.groups_button.Name = "groups_button";
+            this.groups_button.Size = new System.Drawing.Size(203, 23);
+            this.groups_button.TabIndex = 7;
+            this.groups_button.Text = "گروه‌های افراد";
+            this.groups_button.UseVisualStyleBackColor = true;
+            this.groups_button.Click += new System.EventHandler(this.groups_click);
             // 
             // Home
             // 
@@ -172,6 +184,7 @@
         private System.Windows.Forms.Button savedTasks;
         private System.Windows.Forms.Button new_Task_Button;
         private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Button groups_button;
 
     }
 }

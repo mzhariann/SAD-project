@@ -60,8 +60,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddGroup.Designer.cs">
+      <DependentUpon>AddGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Capacity.cs" />
     <Compile Include="CapacityArchive.cs" />
+    <Compile Include="Compose.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Compose.Designer.cs">
+      <DependentUpon>Compose.cs</DependentUpon>
+    </Compile>
     <Compile Include="dbConnection.cs" />
     <Compile Include="dbDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -71,6 +83,25 @@
     <Compile Include="Evaluator.cs" />
     <Compile Include="Exam.cs" />
     <Compile Include="ExtendYear.cs" />
+    <Compile Include="Groups.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Groups.Designer.cs">
+      <DependentUpon>Groups.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Home.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Home.Designer.cs">
+      <DependentUpon>Home.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Insert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Insert.Designer.cs">
+      <DependentUpon>Insert.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MailCreator.cs" />
     <Compile Include="Major.cs" />
     <Compile Include="Meeting.cs" />
     <Compile Include="MSDefence.cs" />
@@ -79,6 +110,10 @@
     <Compile Include="PhdExamGrader.cs" />
     <Compile Include="PhDProposal.cs" />
     <Compile Include="Professor.cs" />
+    <Compile Include="readOnlyTask.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="readOnlyTask.Designer.cs" />
     <Compile Include="Semester.cs" />
     <Compile Include="signInForm.cs">
       <SubType>Form</SubType>
@@ -89,7 +124,22 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Student.cs" />
+    <Compile Include="Task.cs" />
+    <Compile Include="TemplateFile.cs" />
+    <Compile Include="TemplatePopulater.cs" />
     <Compile Include="User.cs" />
+    <EmbeddedResource Include="AddGroup.resx">
+      <DependentUpon>AddGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Compose.resx" />
+    <EmbeddedResource Include="Groups.resx">
+      <DependentUpon>Groups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home.resx" />
+    <EmbeddedResource Include="Insert.resx">
+      <DependentUpon>Insert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="readOnlyTask.resx" />
     <EmbeddedResource Include="signInForm.resx">
       <DependentUpon>signInForm.cs</DependentUpon>
     </EmbeddedResource>
