@@ -463,7 +463,7 @@ namespace SAD
             con.Open();
             DataTable t = new DataTable();
             using (SqlDataAdapter a = new SqlDataAdapter(
-            "SELECT (CASE WHEN S.Id IN (SELECT MemberId FROM [GroupMembers] WHERE GroupId = '" + id + "') THEN 1 ELSE 0 END) AS bool, P.Id , P.fName , P.lName , P.email FROM [Evaluator] as S , [Person] as P WHERE S.Id = P.Id ", con))
+            "SELECT (CASE WHEN S.Id IN (SELECT MemberId FROM [GroupMembers] WHERE GroupId = '" + id + "') THEN True ELSE False END) AS bool, P.Id , P.fName , P.lName , P.email FROM [Evaluator] as S , [Person] as P WHERE S.Id = P.Id ", con))
             {
                 // Use DataAdapter to fill DataTable
                 a.Fill(t);
@@ -481,7 +481,7 @@ namespace SAD
             try
             {
                 SqlCommand com = new SqlCommand("UPDATE [Group] SET Name='" + name + "' Where Id = '" + id + "'", con);
-                com.ExecuteNoxnQuery();
+                com.ExecuteNonQuery();
                 con.Close();
                 return true;
             }
