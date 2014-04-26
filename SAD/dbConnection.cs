@@ -341,6 +341,27 @@ namespace SAD
             return true;
         }
 
+        public static bool deleteGroupMember(int gId, int mId)
+        {
+            try
+            {
+                con.Open();
+                SqlCommand cmd = new SqlCommand("DELETE FROM [GroupMembers] WHERE GroupId = '" + gId + "' AND MemberId = '" + mId + "'", con);
+
+                cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                return false;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return true;
+        }
         public static int addGroup(string name)
         {
             try
@@ -463,7 +484,7 @@ namespace SAD
             con.Open();
             DataTable t = new DataTable();
             using (SqlDataAdapter a = new SqlDataAdapter(
-            "SELECT (CASE WHEN S.Id IN (SELECT MemberId FROM [GroupMembers] WHERE GroupId = '" + id + "') THEN True ELSE False END) AS bool, P.Id , P.fName , P.lName , P.email FROM [Evaluator] as S , [Person] as P WHERE S.Id = P.Id ", con))
+            "SELECT (CASE WHEN S.Id IN (SELECT MemberId FROM [GroupMembers] WHERE GroupId = '" + id + "') THEN 1 ELSE 0 END) AS bool, P.Id , P.fName , P.lName , P.email FROM [Evaluator] as S , [Person] as P WHERE S.Id = P.Id ", con))
             {
                 // Use DataAdapter to fill DataTable
                 a.Fill(t);
