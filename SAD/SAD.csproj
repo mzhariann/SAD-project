@@ -60,9 +60,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddGroup.Designer.cs">
+      <DependentUpon>AddGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Capacity.cs" />
     <Compile Include="CapacityArchive.cs" />
-    <Compile Include="PeriodicSend.cs" />
     <Compile Include="Compose.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,9 +80,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="EditGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditGroup.Designer.cs">
+      <DependentUpon>EditGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Evaluator.cs" />
     <Compile Include="Exam.cs" />
     <Compile Include="ExtendYear.cs" />
+    <Compile Include="Groups.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Groups.Designer.cs">
+      <DependentUpon>Groups.cs</DependentUpon>
+    </Compile>
     <Compile Include="Home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +107,7 @@
     <Compile Include="Insert.Designer.cs">
       <DependentUpon>Insert.cs</DependentUpon>
     </Compile>
+    <Compile Include="MailCreator.cs" />
     <Compile Include="Major.cs" />
     <Compile Include="Meeting.cs" />
     <Compile Include="MSDefence.cs" />
@@ -101,9 +119,7 @@
     <Compile Include="readOnlyTask.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="readOnlyTask.Designer.cs">
-      <DependentUpon>readOnlyTask.cs</DependentUpon>
-    </Compile>
+    <Compile Include="readOnlyTask.Designer.cs" />
     <Compile Include="Semester.cs" />
     <Compile Include="signInForm.cs">
       <SubType>Form</SubType>
@@ -115,17 +131,24 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Student.cs" />
     <Compile Include="Task.cs" />
+    <Compile Include="TemplateFile.cs" />
+    <Compile Include="TemplatePopulater.cs" />
     <Compile Include="User.cs" />
-    <EmbeddedResource Include="Compose.resx" />
-    <EmbeddedResource Include="Home.resx">
-      <DependentUpon>Home.cs</DependentUpon>
+    <EmbeddedResource Include="AddGroup.resx">
+      <DependentUpon>AddGroup.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Compose.resx" />
+    <EmbeddedResource Include="EditGroup.resx">
+      <DependentUpon>EditGroup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Groups.resx">
+      <DependentUpon>Groups.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Home.resx" />
     <EmbeddedResource Include="Insert.resx">
       <DependentUpon>Insert.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="readOnlyTask.resx">
-      <DependentUpon>readOnlyTask.cs</DependentUpon>
-    </EmbeddedResource>
+    <EmbeddedResource Include="readOnlyTask.resx" />
     <EmbeddedResource Include="signInForm.resx">
       <DependentUpon>signInForm.cs</DependentUpon>
     </EmbeddedResource>
