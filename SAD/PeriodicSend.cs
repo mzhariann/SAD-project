@@ -13,5 +13,4 @@ namespace SAD
         public DateTime endDate { set; get; }
         public KeyValuePair<int,int > period { set; get; }
     }
-    public enum Periods {Week, Month, Year};
 }
