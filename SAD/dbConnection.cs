@@ -13,22 +13,20 @@ namespace SAD
 {
     public static class dbConnection
     {
-        static SqlConnection con;
-        public static List<Task> tasks;
+        public static SqlConnection con;
         public static void initializeConnection()
         {
             string conString = Properties.Settings.Default.dbConnectionString;
             con = new SqlConnection(conString);
-            tasks = new List<Task>();
         }
         public static bool userPassMatches(string user, string pass)
         {
             con.Open();
-
+            
             using (SqlCommand com = new SqlCommand("SELECT Id FROM [User] WHERE userName='" + user + "' AND password='" + pass + "'", con))
             {
                 SqlDataReader reader = com.ExecuteReader();
-
+                
                 if (reader.Read())
                 {
                     con.Close();
@@ -87,12 +85,12 @@ namespace SAD
             using (SqlCommand com = new SqlCommand("SELECT c.name 'Column Name' FROM sys.columns c WHERE c.object_id = OBJECT_ID('" + tableName + "')", con))
             {
                 SqlDataReader reader = com.ExecuteReader();
-
+                
                 if (reader.Read())
                 {
                     string[] columns = new string[reader.FieldCount];
                     reader.GetValues(columns);
-                    con.Close();
+                    con.Close();  
                     return columns;
                 }
             }
@@ -397,7 +395,7 @@ namespace SAD
 
                 // Render data onto the screen
 
-            }
+        }
             con.Close();
             return t;
         }
@@ -453,6 +451,23 @@ namespace SAD
             //"SELECT Id FROM [Student] as S WHERE Id IN (SELECT MemberId FROM [GroupMembers] WHERE GroupId = '" + id + "') ", con))
             using (SqlDataAdapter a = new SqlDataAdapter(
             "SELECT (CASE WHEN S.Id IN (SELECT MemberId FROM [GroupMembers] WHERE GroupId = '" + id + "') THEN 1 ELSE 0 END) AS bool, P.Id , P.fName , P.lName , P.email FROM [Student] as S , [Person] as P WHERE S.Id = P.Id ", con))
+            {
+                // Use DataAdapter to fill DataTable
+                a.Fill(t);
+                // Render data onto the screen
+            }
+            con.Close();
+            return t;
+        }
+
+        public static DataTable getMembersInGroup(int id)
+        {
+            con.Open();
+            DataTable t = new DataTable();
+            //using (SqlDataAdapter a = new SqlDataAdapter(
+            //"SELECT Id FROM [Student] as S WHERE Id IN (SELECT MemberId FROM [GroupMembers] WHERE GroupId = '" + id + "') ", con))
+            using (SqlDataAdapter a = new SqlDataAdapter(
+                "SELECT  P.Id , P.fName , P.lName , P.email FROM [Person] as P WHERE (P.Id IN (SELECT MemberId FROM [GroupMembers] WHERE GroupId = '" + id + "'))", con))
             {
                 // Use DataAdapter to fill DataTable
                 a.Fill(t);
@@ -519,5 +534,5 @@ namespace SAD
         }
     }
     
-}
+    }
 
