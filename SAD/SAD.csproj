@@ -60,32 +60,42 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddGroup.cs">
+    <Compile Include="AddGroupForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddGroup.Designer.cs">
-      <DependentUpon>AddGroup.cs</DependentUpon>
+    <Compile Include="AddGroupForm.Designer.cs">
+      <DependentUpon>AddGroupForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Capacity.cs" />
     <Compile Include="CapacityArchive.cs" />
-    <Compile Include="TaskDAO.cs" />
-    <Compile Include="Compose.cs">
+    <Compile Include="EditGroupForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Compose.Designer.cs">
-      <DependentUpon>Compose.cs</DependentUpon>
+    <Compile Include="EditGroupForm.Designer.cs">
+      <DependentUpon>EditGroupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GroupsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GroupsForm.Designer.cs">
+      <DependentUpon>GroupsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HomeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomeForm.Designer.cs" />
+    <Compile Include="TaskDAO.cs" />
+    <Compile Include="ComposeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComposeForm.Designer.cs">
+      <DependentUpon>ComposeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="dbConnection.cs" />
     <Compile Include="dbDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dbDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="EditGroup.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="EditGroup.Designer.cs">
-      <DependentUpon>EditGroup.cs</DependentUpon>
     </Compile>
     <Compile Include="Evaluator.cs" />
     <Compile Include="Exam.cs" />
@@ -95,18 +105,6 @@
     </Compile>
     <Compile Include="Receivers.Designer.cs">
       <DependentUpon>Receivers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Groups.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Groups.Designer.cs">
-      <DependentUpon>Groups.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Home.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Home.Designer.cs">
-      <DependentUpon>Home.cs</DependentUpon>
     </Compile>
     <Compile Include="MailCreator.cs" />
     <Compile Include="Major.cs" />
@@ -136,18 +134,18 @@
     <Compile Include="TemplateFile.cs" />
     <Compile Include="TemplatePopulater.cs" />
     <Compile Include="User.cs" />
-    <EmbeddedResource Include="AddGroup.resx">
-      <DependentUpon>AddGroup.cs</DependentUpon>
+    <EmbeddedResource Include="AddGroupForm.resx">
+      <DependentUpon>AddGroupForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Compose.resx" />
-    <EmbeddedResource Include="EditGroup.resx">
-      <DependentUpon>EditGroup.cs</DependentUpon>
+    <EmbeddedResource Include="ComposeForm.resx" />
+    <EmbeddedResource Include="EditGroupForm.resx">
+      <DependentUpon>EditGroupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GroupsForm.resx">
+      <DependentUpon>GroupsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Receivers.resx">
       <DependentUpon>Receivers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Groups.resx">
-      <DependentUpon>Groups.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Home.resx" />
     <EmbeddedResource Include="readOnlyTask.resx" />
