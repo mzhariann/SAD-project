@@ -1,6 +1,6 @@
 ﻿namespace SAD
 {
-    partial class readOnlyTaskForm
+    partial class readOnlyTask
     {
         /// <summary>
         /// Required designer variable.
