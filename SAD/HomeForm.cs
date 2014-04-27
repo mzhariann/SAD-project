@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace SAD
 {
-    public partial class Home : Form
+    public partial class HomeForm : Form
     {
 
-        public Home()
+        public HomeForm()
         {
             InitializeComponent();
         }
@@ -60,7 +60,7 @@ namespace SAD
 
         private void new_Task_Click(object sender, EventArgs e)
         {
-            Compose compose = new Compose(true);
+            ComposeForm compose = new ComposeForm(true);
             compose.Show();
         }
 
@@ -94,7 +94,7 @@ namespace SAD
 
         private void groups_click(object sender, EventArgs e)
         {
-            Groups group = new Groups();
+            GroupsForm group = new GroupsForm();
             group.Show();
         }
     }
