@@ -10,16 +10,14 @@ using System.Windows.Forms;
 
 namespace SAD
 {
-    public partial class Groups : Form
+    public partial class GroupsForm : Form
     {
-        public Groups()
+        public GroupsForm()
         {
             InitializeComponent();
             FillData();
         }
         public void FillData() {
-            //DataGridViewCheckBoxColumn col = new DataGridViewCheckBoxColumn();
-            //groupsDataGridView.Columns.Add(col);
 
             DataTable t = dbConnection.getGroupsTable();
             groupsDataGridView.DataSource = t;
@@ -27,28 +25,24 @@ namespace SAD
 
         private void new_group_btn_Click(object sender, EventArgs e)
         {
-            AddGroup newGroup = new AddGroup();
+            AddGroupForm newGroup = new AddGroupForm();
             newGroup.Show();
             FillData();
+            groupsDataGridView.Refresh();
         }
 
         private void edit_group_btn_Click(object sender, EventArgs e)
         {
             int grpid = Convert.ToInt32(groupsDataGridView.Rows[groupsDataGridView.SelectedRows[0].Index].Cells["Id"].Value);
-            EditGroup e2 = new EditGroup(grpid);
+            EditGroupForm e2 = new EditGroupForm(grpid);
             e2.Show();
             FillData();
+            groupsDataGridView.Refresh();
         }
 
         private void delete_group_btn_Click(object sender, EventArgs e)
         {
-            //System.Diagnostics.Debug.WriteLine("DELETE BEGIN : ");
-            //MessageBox.Show("DELETE BEGIN");
-            
-            Int32 selectedRowCount = groupsDataGridView.Rows
-        .GetRowCount(DataGridViewElementStates.Selected);
-
-
+            Int32 selectedRowCount = groupsDataGridView.Rows.GetRowCount(DataGridViewElementStates.Selected);
 
             if (selectedRowCount > 0)
             {
@@ -57,7 +51,7 @@ namespace SAD
                      string grpid = Convert.ToString(groupsDataGridView.Rows[groupsDataGridView.SelectedRows[i].Index].Cells["Id"].Value);
 
                      dbConnection.delete("Group", Convert.ToInt32(grpid));
-                    //System.Diagnostics.Debug.WriteLine("DELETE DONE : ");
+
                      FillData();   
                      groupsDataGridView.Refresh();
                 }

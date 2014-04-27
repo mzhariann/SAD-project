@@ -36,7 +36,7 @@ namespace SAD
         {
             if (dbConnection.userPassMatches(userName, password))
             {
-                Home home = new Home();
+                HomeForm home = new HomeForm();
                 home.Show();
             }
             else
