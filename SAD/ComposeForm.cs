@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace SAD
 {
-    public partial class Compose : Form
+    public partial class ComposeForm : Form
     {
         Boolean isNew;
-        public Compose(Boolean isNew)
+        public ComposeForm(Boolean isNew)
         {
             this.isNew = isNew;
             InitializeComponent();

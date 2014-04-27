@@ -1,6 +1,6 @@
 ﻿namespace SAD
 {
-    partial class Compose
+    partial class ComposeForm
     {
         /// <summary>
         /// Required designer variable.
