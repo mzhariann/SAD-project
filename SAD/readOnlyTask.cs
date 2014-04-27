@@ -69,7 +69,7 @@ namespace SAD
 
         private void saveEditBtn_Click(object sender, EventArgs e)
         {
-            Compose cmp = new Compose(false);
+            ComposeForm cmp = new ComposeForm(false);
             cmp.Controls.OfType<TextBox>().First(x => x.Name == "subjectTextBox").Text = task.subject;
             cmp.Controls.OfType<RichTextBox>().First(x => x.Name == "editorTextBox").Text = task.content;
             cmp.Controls.OfType<DateTimePicker>().First(x => x.Name == "creationDate").Value = task.creationDate;
