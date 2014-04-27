@@ -37,8 +37,6 @@
             this.date = new System.Windows.Forms.Label();
             this.hasPrdSend = new System.Windows.Forms.CheckBox();
             this.confirmation = new System.Windows.Forms.CheckBox();
-            this.receiverCheckList = new System.Windows.Forms.CheckedListBox();
-            this.receiverLabel = new System.Windows.Forms.Label();
             this.endDate = new System.Windows.Forms.DateTimePicker();
             this.sendingPanel1 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
@@ -54,6 +52,7 @@
             this.dntHavePrdSend = new System.Windows.Forms.CheckBox();
             this.creationDate = new System.Windows.Forms.DateTimePicker();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.receiverBtn = new System.Windows.Forms.Button();
             this.sendingPanel1.SuspendLayout();
             this.sendingPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -114,7 +113,7 @@
             // hasPrdSend
             // 
             this.hasPrdSend.AutoSize = true;
-            this.hasPrdSend.Location = new System.Drawing.Point(269, 2);
+            this.hasPrdSend.Location = new System.Drawing.Point(269, 9);
             this.hasPrdSend.Name = "hasPrdSend";
             this.hasPrdSend.Size = new System.Drawing.Size(116, 17);
             this.hasPrdSend.TabIndex = 3;
@@ -124,45 +123,18 @@
             // confirmation
             // 
             this.confirmation.AutoSize = true;
-            this.confirmation.Location = new System.Drawing.Point(531, 449);
+            this.confirmation.Location = new System.Drawing.Point(531, 364);
             this.confirmation.Name = "confirmation";
             this.confirmation.Size = new System.Drawing.Size(100, 17);
             this.confirmation.TabIndex = 10;
             this.confirmation.Text = "نیاز به تایید دارد";
             this.confirmation.UseVisualStyleBackColor = true;
             // 
-            // receiverCheckList
-            // 
-            this.receiverCheckList.FormattingEnabled = true;
-            this.receiverCheckList.Items.AddRange(new object[] {
-            "اساتید طراح",
-            "اساتیدی که نمرات را نداده‌اند",
-            "دانشجویان دکتری",
-            "مدیران گروه‌ها",
-            "دانشجویان جدیدالورود",
-            "استاید ارزیاب",
-            "اساتید درس سمینار",
-            "همه‌ی اساتید",
-            "همه‌ی دانشجویان"});
-            this.receiverCheckList.Location = new System.Drawing.Point(464, 302);
-            this.receiverCheckList.Name = "receiverCheckList";
-            this.receiverCheckList.Size = new System.Drawing.Size(167, 139);
-            this.receiverCheckList.TabIndex = 10;
-            // 
-            // receiverLabel
-            // 
-            this.receiverLabel.AutoSize = true;
-            this.receiverLabel.Location = new System.Drawing.Point(596, 286);
-            this.receiverLabel.Name = "receiverLabel";
-            this.receiverLabel.Size = new System.Drawing.Size(38, 13);
-            this.receiverLabel.TabIndex = 11;
-            this.receiverLabel.Text = "گیرنده";
-            // 
             // endDate
             // 
             this.endDate.CustomFormat = "MMMM dd, yyyy";
             this.endDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endDate.Location = new System.Drawing.Point(3, 29);
+            this.endDate.Location = new System.Drawing.Point(3, 38);
             this.endDate.Name = "endDate";
             this.endDate.Size = new System.Drawing.Size(167, 20);
             this.endDate.TabIndex = 5;
@@ -181,13 +153,13 @@
             this.sendingPanel1.Controls.Add(this.hasPrdSend);
             this.sendingPanel1.Location = new System.Drawing.Point(40, 302);
             this.sendingPanel1.Name = "sendingPanel1";
-            this.sendingPanel1.Size = new System.Drawing.Size(390, 100);
+            this.sendingPanel1.Size = new System.Drawing.Size(390, 108);
             this.sendingPanel1.TabIndex = 13;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(176, 62);
+            this.label5.Location = new System.Drawing.Point(176, 84);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(30, 13);
             this.label5.TabIndex = 20;
@@ -200,7 +172,7 @@
             "هفته",
             "ماه",
             "سال"});
-            this.prdCmbBox.Location = new System.Drawing.Point(3, 62);
+            this.prdCmbBox.Location = new System.Drawing.Point(3, 76);
             this.prdCmbBox.Name = "prdCmbBox";
             this.prdCmbBox.Size = new System.Drawing.Size(100, 21);
             this.prdCmbBox.TabIndex = 7;
@@ -216,7 +188,7 @@
             "4",
             "5",
             "6"});
-            this.numCmbBox.Location = new System.Drawing.Point(109, 62);
+            this.numCmbBox.Location = new System.Drawing.Point(109, 76);
             this.numCmbBox.Name = "numCmbBox";
             this.numCmbBox.Size = new System.Drawing.Size(61, 21);
             this.numCmbBox.TabIndex = 6;
@@ -224,7 +196,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(210, 62);
+            this.label3.Location = new System.Drawing.Point(208, 84);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 13);
             this.label3.TabIndex = 17;
@@ -233,7 +205,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(208, 35);
+            this.label2.Location = new System.Drawing.Point(208, 44);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 15;
@@ -242,7 +214,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(204, 6);
+            this.label1.Location = new System.Drawing.Point(204, 10);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(59, 13);
             this.label1.TabIndex = 14;
@@ -252,7 +224,7 @@
             // 
             this.startDate.CustomFormat = "MMMM dd, yyyy";
             this.startDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.startDate.Location = new System.Drawing.Point(3, 3);
+            this.startDate.Location = new System.Drawing.Point(3, 10);
             this.startDate.Name = "startDate";
             this.startDate.Size = new System.Drawing.Size(167, 20);
             this.startDate.TabIndex = 4;
@@ -263,15 +235,15 @@
             this.sendingPanel2.Controls.Add(this.label4);
             this.sendingPanel2.Controls.Add(this.sendDate);
             this.sendingPanel2.Controls.Add(this.dntHavePrdSend);
-            this.sendingPanel2.Location = new System.Drawing.Point(40, 408);
+            this.sendingPanel2.Location = new System.Drawing.Point(441, 302);
             this.sendingPanel2.Name = "sendingPanel2";
-            this.sendingPanel2.Size = new System.Drawing.Size(390, 29);
+            this.sendingPanel2.Size = new System.Drawing.Size(190, 58);
             this.sendingPanel2.TabIndex = 14;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(208, 5);
+            this.label4.Location = new System.Drawing.Point(132, 34);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(54, 13);
             this.label4.TabIndex = 2;
@@ -281,15 +253,15 @@
             // 
             this.sendDate.CustomFormat = "MMMM dd, yyyy";
             this.sendDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.sendDate.Location = new System.Drawing.Point(3, 2);
+            this.sendDate.Location = new System.Drawing.Point(3, 28);
             this.sendDate.Name = "sendDate";
-            this.sendDate.Size = new System.Drawing.Size(167, 20);
+            this.sendDate.Size = new System.Drawing.Size(123, 20);
             this.sendDate.TabIndex = 9;
             // 
             // dntHavePrdSend
             // 
             this.dntHavePrdSend.AutoSize = true;
-            this.dntHavePrdSend.Location = new System.Drawing.Point(268, 4);
+            this.dntHavePrdSend.Location = new System.Drawing.Point(66, 5);
             this.dntHavePrdSend.Name = "dntHavePrdSend";
             this.dntHavePrdSend.Size = new System.Drawing.Size(117, 17);
             this.dntHavePrdSend.TabIndex = 8;
@@ -309,16 +281,25 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // receiverBtn
+            // 
+            this.receiverBtn.Location = new System.Drawing.Point(441, 387);
+            this.receiverBtn.Name = "receiverBtn";
+            this.receiverBtn.Size = new System.Drawing.Size(190, 23);
+            this.receiverBtn.TabIndex = 15;
+            this.receiverBtn.Text = "انتخاب گیرند‌ه‌ها";
+            this.receiverBtn.UseVisualStyleBackColor = true;
+            this.receiverBtn.Click += new System.EventHandler(this.receiverBtn_Click);
+            // 
             // Compose
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(689, 495);
+            this.Controls.Add(this.receiverBtn);
             this.Controls.Add(this.creationDate);
             this.Controls.Add(this.sendingPanel2);
             this.Controls.Add(this.sendingPanel1);
-            this.Controls.Add(this.receiverLabel);
-            this.Controls.Add(this.receiverCheckList);
             this.Controls.Add(this.confirmation);
             this.Controls.Add(this.date);
             this.Controls.Add(this.subject);
@@ -348,8 +329,6 @@
         private System.Windows.Forms.Label date;
         private System.Windows.Forms.CheckBox hasPrdSend;
         private System.Windows.Forms.CheckBox confirmation;
-        private System.Windows.Forms.CheckedListBox receiverCheckList;
-        private System.Windows.Forms.Label receiverLabel;
         private System.Windows.Forms.DateTimePicker endDate;
         private System.Windows.Forms.Panel sendingPanel1;
         private System.Windows.Forms.DateTimePicker startDate;
@@ -365,5 +344,6 @@
         private System.Windows.Forms.ComboBox prdCmbBox;
         private System.Windows.Forms.ComboBox numCmbBox;
         private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.Button receiverBtn;
     }
 }

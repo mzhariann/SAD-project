@@ -12,8 +12,10 @@ namespace SAD
 {
     public partial class Compose : Form
     {
-        public Compose()
+        Boolean isNew;
+        public Compose(Boolean isNew)
         {
+            this.isNew = isNew;
             InitializeComponent();
         }
 
@@ -35,7 +37,6 @@ namespace SAD
             {
                 errorProvider1.SetError(sendingPanel1, "یکی از دو گزینه‌ی ارسال یا عدم ارسال دوره‌ای باید انتخاب شود");
                 errorProvider1.SetError(sendingPanel2, "یکی از دو گزینه‌ی ارسال یا عدم ارسال دوره‌ای باید انتخاب شود");
-
                 return true;
             
             }
@@ -44,6 +45,11 @@ namespace SAD
             if ( c1.Checked && (cb1.SelectedIndex < 0 || cb2.SelectedIndex < 0))
             {
                 errorProvider1.SetError(sendingPanel1, "بازه‌ی ارسال باید مشخص باشد");
+                return true;
+            }
+            if (t.receivers.Count == 0)
+            {
+                errorProvider1.SetError(receiverBtn, "حداقل یک گیرنده باید انتخاب شده‌باشد");
                 return true;
             }
             return false;
@@ -58,28 +64,36 @@ namespace SAD
                 t.creationDate = creationDate.Value;
                 t.subject = subjectTextBox.Text;
                 t.content = editorTextBox.Text;
-                t.receivers = new List<string>();
-                foreach (object itemChecked in receiverCheckList.CheckedItems)
-                    t.receivers.Add(itemChecked.ToString());
                 CheckBox c1 = sendingPanel1.Controls.OfType<CheckBox>().First(x => x.Name == "hasPrdSend");
+                t.periodicSend = c1.Checked;
+                t.prdSend.startDate = sendingPanel1.Controls.OfType<DateTimePicker>().First(x => x.Name == "startDate").Value;
+                t.prdSend.endDate = sendingPanel1.Controls.OfType<DateTimePicker>().First(x => x.Name == "endDate").Value;
                 if (c1.Checked)
                 {
-                    t.periodicSend = true;
-                    t.prdSend = new PeriodicSend();
-                    t.prdSend.startDate = sendingPanel1.Controls.OfType<DateTimePicker>().First(x => x.Name == "startDate").Value;
-                    t.prdSend.endDate = sendingPanel1.Controls.OfType<DateTimePicker>().First(x => x.Name == "endDate").Value;
                     t.prdSend.period = new KeyValuePair<int, int>(Convert.ToInt32((sendingPanel1.Controls.OfType<ComboBox>().First(x => x.Name == "numCmbBox").SelectedItem.ToString()), 10), sendingPanel1.Controls.OfType<ComboBox>().First(x => x.Name == "prdCmbBox").SelectedIndex);
                 }
-                CheckBox c2 = sendingPanel2.Controls.OfType<CheckBox>().First(x => x.Name == "dntHavePrdSend");
-                if (c2.Checked)
+                else
                 {
-                    t.sendingDate = sendingPanel2.Controls.OfType<DateTimePicker>().First(x => x.Name == "sendDate").Value;
+                    t.prdSend.period = new KeyValuePair<int, int>(-1, -1);
                 }
+                CheckBox c2 = sendingPanel2.Controls.OfType<CheckBox>().First(x => x.Name == "dntHavePrdSend");
+                t.sendingDate = sendingPanel2.Controls.OfType<DateTimePicker>().First(x => x.Name == "sendDate").Value;
                 t.confirmation = confirmation.Checked;
                 MessageBox.Show("نامه‌ی شما با موفقیت ثبت شد");
-                dbConnection.tasks.Add(t);
+                if (isNew)
+                    t.saveToDB();
+                else
+                    t.updateInDB();
+                t.addReceivers();
                 this.Close();
             }
+        }
+
+        private void receiverBtn_Click(object sender, EventArgs e)
+        {
+            Receivers rcv = new Receivers(t);
+            rcv.Show();
+
         }
 
        
