@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SAD
 {
-    public partial class AddGroup : Form
+    public partial class AddGroupForm : Form
     {
-        public AddGroup()
+        public AddGroupForm()
         {
             InitializeComponent();
             FillData();
@@ -27,11 +27,13 @@ namespace SAD
 
             DataTable t2 = dbConnection.getAllProfsTable();
             profGridView.DataSource = t2;
+            
             DataTable t3 = dbConnection.getAllEvalsTable();
             evalGridView.DataSource = t3;
         }
         private void save_button_Click(object sender, EventArgs e)
         {
+
             int gId = dbConnection.addGroup(name_txtbox.Text);
 
             Int32 rowCount = studentsGridView.Rows.Count;
@@ -47,7 +49,6 @@ namespace SAD
                     dbConnection.addGroupMember(gId , stdId);
                     //System.Diagnostics.Debug.WriteLine("DELETE DONE : ");
                 }
-
             }
 
             rowCount = profGridView.Rows.Count;

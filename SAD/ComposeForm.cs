@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SAD
 {
-    public partial class Compose : Form
+    public partial class ComposeForm : Form
     {
-        public Compose()
+        public ComposeForm()
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
 ﻿namespace SAD
 {
-    partial class Home
+    partial class HomeForm
     {
         /// <summary>
         /// Required designer variable.

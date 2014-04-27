@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SAD
 {
-    public partial class readOnlyTask : Form
+    public partial class readOnlyTaskForm : Form
     {
-        public readOnlyTask(Task t)
+        public readOnlyTaskForm(Task t)
         {
             InitializeComponent();
             subject.Text = t.subject;

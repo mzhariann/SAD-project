@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace SAD
 {
-    public partial class EditGroup : Form
+    public partial class EditGroupForm : Form
     {
         int Gid;
         string name;
         DataTable preStd;
         DataTable preProf;
         DataTable preEval;
-        public EditGroup(int id)
+        public EditGroupForm(int id)
         {
             Gid = id;
             InitializeComponent();

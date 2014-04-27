@@ -1,6 +1,6 @@
 ﻿namespace SAD
 {
-    partial class EditGroup
+    partial class EditGroupForm
     {
         /// <summary>
         /// Required designer variable.
