@@ -38,9 +38,12 @@
             this.new_Task_Button = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groups_button = new System.Windows.Forms.Button();
+            this.dataGrid1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid1)).BeginInit();
             this.SuspendLayout();
             // 
             // studen_Info_Button
@@ -131,6 +134,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.dataGrid1);
             this.splitContainer1.Panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.splitContainer1_Panel1_Paint);
             // 
             // splitContainer1.Panel2
@@ -158,6 +162,15 @@
             this.groups_button.UseVisualStyleBackColor = true;
             this.groups_button.Click += new System.EventHandler(this.groups_click);
             // 
+            // dataGrid1
+            // 
+            this.dataGrid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGrid1.Location = new System.Drawing.Point(12, 13);
+            this.dataGrid1.MultiSelect = false;
+            this.dataGrid1.Name = "dataGrid1";
+            this.dataGrid1.Size = new System.Drawing.Size(240, 368);
+            this.dataGrid1.TabIndex = 0;
+            // 
             // Home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -166,9 +179,11 @@
             this.Controls.Add(this.splitContainer1);
             this.Name = "Home";
             this.Text = "خانه";
+            this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGrid1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -185,6 +200,7 @@
         private System.Windows.Forms.Button new_Task_Button;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button groups_button;
+        private System.Windows.Forms.DataGridView dataGrid1;
 
     }
 }
