@@ -62,15 +62,14 @@ namespace SAD
         private void delCanBtn_Click(object sender, EventArgs e)
         {
                 MessageBox.Show("آیا مطمئن هستید؟");
-                //TODO baznevisi ba ID
-                dbConnection.tasks.Remove(task);
+                task.deleteFromDB();               
                 MessageBox.Show("تغییرات مورد نظر شما اعمال شد");
                 this.Close();
         }
 
         private void saveEditBtn_Click(object sender, EventArgs e)
         {
-            Compose cmp = new Compose();
+            Compose cmp = new Compose(false);
             cmp.Controls.OfType<TextBox>().First(x => x.Name == "subjectTextBox").Text = task.subject;
             cmp.Controls.OfType<RichTextBox>().First(x => x.Name == "editorTextBox").Text = task.content;
             cmp.Controls.OfType<DateTimePicker>().First(x => x.Name == "creationDate").Value = task.creationDate;
@@ -89,8 +88,6 @@ namespace SAD
                 cmp.Controls.OfType<Panel>().First(x => x.Name == "sendingPanel2").Controls.OfType<DateTimePicker>().First(x => x.Name == "sendDate").Value = task.sendingDate;
             }
             cmp.Show();
-            //TODO bug (shayad save nakone kho)
-            dbConnection.tasks.Remove(task);
             this.Close();
         }
     }
